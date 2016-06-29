@@ -1,0 +1,12 @@
+/vendor
+/node_modules
+/public/assets/bootstrap
+/public/assets/bootstrap-datepicker
+/public/assets/font-awesome
+/public/assets/ionicons
+/public/assets/theme
+/public/vendor/*
+
+Homestead.yaml
+Homestead.json
+.env
