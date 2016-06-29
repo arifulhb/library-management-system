@@ -18,6 +18,18 @@
     Route::get('/book/{id}/{slug}', ['uses' => 'BookController@show', 'where' => ['id' => '[0-9]+',]]);
     Route::get('/author/{id}/{slug}', ['uses' => 'AuthorController@show', 'where' => ['id' => '[0-9]+',]]);
 
+    /**
+     * Auth Routes
+     */
+    Route::controllers([
+        'auth'     => 'Auth\AuthController',
+        'password' => 'Auth\PasswordController',
+    ]);
+
+
+    /**
+     * Member Portal
+     */
     Route::group(['middleware' => 'auth'], function () {
 
         Route::get('/my-profile', ['uses' => 'AdminController@getProfile',]);
@@ -33,19 +45,22 @@
      */
     Route::group(['prefix' => 'admin'], function () {
 
-//        Route::get('/', ['middleware' => 'auth', 'uses'=>'AdminController@index']);
-
         Route::get('login', function () {
             return view('admin.auth.login');
         });
 
         Route::group(['middleware' => 'auth'], function () {
 
+            /**
+             * Admin Controller
+             */
             Route::get('/', ['uses' => 'AdminController@index',]);
-
             Route::post('/my-profile', ['uses' => 'AdminController@postProfile',]);
             Route::post('/change-password', ['uses' => 'AdminController@postChangePassword',]);
 
+            /**
+             * Author
+             */
             Route::get('/author/add-new', ['uses' => 'AuthorController@create', 'middleware' => 'admin']);
             Route::post('/author', ['uses' => 'AuthorController@store', 'middleware' => 'admin']);
             Route::get('/author/{id}/edit',
@@ -53,9 +68,16 @@
             Route::post('/author/{id}',
                 ['uses' => 'AuthorController@update', 'middleware' => 'admin', 'where' => ['id' => '[0-9]+',]]);
             Route::get('/author/list', ['uses' => 'AuthorController@index']);
+            Route::get('/author/search', ['uses' => 'AuthorController@getSearch']);
 
+            /**
+             * Country
+             */
             Route::get('/countries', ['uses' => 'CountryController@index']);
 
+            /**
+             * Publisher
+             */
             Route::get('/publisher/add-new', ['uses' => 'PublisherController@create', 'middleware' => 'admin']);
             Route::post('/publisher', ['uses' => 'PublisherController@store', 'middleware' => 'admin']);
             Route::get('/publisher/{id}/edit',
@@ -63,8 +85,11 @@
             Route::post('/publisher/{id}',
                 ['uses' => 'PublisherController@update', 'middleware' => 'admin', 'where' => ['id' => '[0-9]+',]]);
             Route::get('/publisher/list', ['uses' => 'PublisherController@index']);
+            Route::get('/publisher/search', ['uses' => 'PublisherController@getSearch']);
 
-
+            /**
+             * Member
+             */
             Route::get('/member/add-new', ['uses' => 'MemberController@create', 'middleware' => 'admin']);
             Route::post('/member', ['uses' => 'MemberController@store', 'middleware' => 'admin']);
             Route::get('/member/{id}/edit',
@@ -74,6 +99,9 @@
             Route::get('/member/list', ['uses' => 'MemberController@index']);
 
 
+            /**
+             * Book
+             */
             Route::post('/book', ['uses' => 'BookController@store', 'middleware' => 'admin']);
             Route::post('/book/{id}',
                 ['uses' => 'BookController@update', 'middleware' => 'admin', 'where' => ['id' => '[0-9]+',]]);
@@ -85,19 +113,20 @@
             Route::get('/book/add-new', ['uses' => 'BookController@create', 'middleware' => 'admin']);
             Route::get('/book/{id}/edit', ['uses' => 'BookController@edit', 'where' => ['id' => '[0-9]+',]]);
             Route::get('/book/{id}/delete', ['uses' => 'BookController@getDelete', 'where' => ['id' => '[0-9]+',]]);
-            Route::delete('/book/{id}/copy/{copyId}', ['uses' => 'BookController@deleteCopy', 'where' => ['id' => '[0-9]+',]]);
+            Route::delete('/book/{id}/copy/{copyId}',
+                ['uses' => 'BookController@deleteCopy', 'where' => ['id' => '[0-9]+',]]);
             Route::delete('/book/{id}', ['uses' => 'BookController@destroy', 'where' => ['id' => '[0-9]+',]]);
             Route::get('/book/search', ['uses' => 'BookController@search']);
 
-            Route::post('/borrow', ['uses' => 'BorrowController@store', ]);
+            /**
+             * Borrow
+             */
+            Route::post('/borrow', ['uses' => 'BorrowController@store',]);
 
-            Route::get('/author/search', ['uses' => 'AuthorController@getSearch']);
-
-
+            /**
+             * Category
+             */
             Route::get('/category/search', ['uses' => 'CategoryController@getSearch']);
-
-
-            Route::get('/publisher/search', ['uses' => 'PublisherController@getSearch']);
 
 
             /**
@@ -109,11 +138,3 @@
 
         });
     });
-
-    /**
-     * Auth Routes
-     */
-    Route::controllers([
-        'auth'     => 'Auth\AuthController',
-        'password' => 'Auth\PasswordController',
-    ]);
