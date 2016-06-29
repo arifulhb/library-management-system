@@ -8,10 +8,7 @@ var config = {
         vendor: [ "jquery", 'lodash', 'moment','bootstrap',
             './node_modules/admin-lte/dist/js/app.js',
             './node_modules/bootstrap-3-typeahead/bootstrap3-typeahead.js',
-            './node_modules/bootstrap-datepicker/dist/js/bootstrap-datepicker.js',
-            './node_modules/jquery.inputmask/dist/inputmask/jquery.inputmask.js',
-            './node_modules/jquery.inputmask/dist/inputmask/jquery.inputmask.date.extensions.js',
-            './node_modules/jquery.inputmask/dist/inputmask/jquery.inputmask.numeric.extensions.js'
+            './node_modules/bootstrap-datepicker/dist/js/bootstrap-datepicker.js'
         ]
     },
     //devtool: "source-map",
@@ -32,17 +29,13 @@ var config = {
             'bootstrap'     : 'bootstrap',
             'adminlte'      : 'adminlte',
             'moment'        : 'moment',
-            '_'             : 'lodash',
-            'inputmask'     : 'inputmask',
-            'inputmask.date': 'inputmask.date'
+            '_'             : 'lodash'
         })
     ],
     resolve: {
         alias: {
             'adminlte'              : './node_modules/admin-lte/dist/js/app.js',
-            'inputmask'             : './node_modules/jquery.inputmask/dist/inputmask/jquery.inputmask.js',
-            'inputmask.date'        : './node_modules/jquery.inputmask/dist/inputmask/jquery.inputmask.date.extensions.js',
-            'inputmask.dependencyLib'   : './node_modules/jquery.inputmask/dist/inputmask/jquery.inputmask.numeric.extensions.js'
+            'inputmask'             : './node_modules/jquery.inputmask/dist/inputmask/jquery.inputmask.js'
         }
     },
     module: {

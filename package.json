@@ -1,12 +1,7 @@
 {
   "private": true,
   "devDependencies": {
-    "admin-lte": "^2.3.3",
-    "grunt-contrib-copy": "^1.0.0",
-    "gulp": "^3.8.8",
-    "ionicons": "^3.0.0",
-    "load-grunt-tasks": "^3.5.0",
-    "webpack": "^1.13.1"
+    "ionicons": "^3.0.0"
   },
   "dependencies": {
     "bootstrap": "^3.3.6",
@@ -16,9 +11,12 @@
     "font-awesome": "^4.6.3",
     "grunt": "^1.0.1",
     "jquery": "^2.2.4",
-    "jquery.inputmask": "^3.1.63",
     "laravel-elixir": "^4.0.0",
     "lodash": "^4.13.1",
+    "webpack": "^1.13.1",
+    "admin-lte": "^2.3.3",
+    "grunt-contrib-copy": "^1.0.0",
+    "load-grunt-tasks": "^3.5.0",
     "moment": "^2.13.0"
   },
   "name": "library-management-system",

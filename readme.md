@@ -6,14 +6,14 @@ A Basic Library Management System based on Laravel 5.1.
 - Browse Books without registration.
 - Borrow Multiple Books
 - Return Single Book
-- Book Copy Management.
-- 
+- Book Copy Management
 
 
 ## Installation
  
 - Clone the project from Github Repo  `git@github.com:arifulhb/library-management-system.git`
 - Go to Applications root folder and install composer packages. `composer install`
+- Copy `.env` file: `cp .env.example .env && php artisan key:generate`
 - Set this following variables in `.env` as bellow
 
 
