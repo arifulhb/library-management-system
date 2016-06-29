@@ -6,7 +6,7 @@
 /public/assets/ionicons
 /public/assets/theme
 /public/vendor/*
-
+.idea
 Homestead.yaml
 Homestead.json
 .env

@@ -1,12 +1,12 @@
 {
-    "name": "laravel/laravel",
-    "description": "The Laravel Framework.",
-    "keywords": ["framework", "laravel"],
+    "name": "arifulhb/library-management-system",
+    "description": "Library Management System based on Laravel 5.1",
+    "keywords": ["library", "lms", "book", "laravel"],
     "license": "MIT",
     "type": "project",
     "require": {
         "php": ">=5.5.9",
-        "laravel/framework": "5.1.*"e
+        "laravel/framework": "5.1.*"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.6",
