@@ -1,5 +1,11 @@
 <?php
 
+    const USER_STATUS_ACTIVE = 1;
+    const USER_STATUS_INACTIVE = 0;
+    const USER_TYPE_ADMIN = 'Admin';
+    const USER_TYPE_MEMBER = 'Member';
+
+
     /**
      * Membership Age
      */
@@ -9,7 +15,7 @@
      * BOOK BORROW LIMIT
      */
     const FULL_MEMBER_BORROW_LIMIT = 6;
-    const JUNIOR_MEMBER_BORROW_LIMIT =3;
+    const JUNIOR_MEMBER_BORROW_LIMIT = 3;
 
     /**
      * BOOK RESERVATION /  BORROW STATUS

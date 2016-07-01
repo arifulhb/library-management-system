@@ -24,7 +24,7 @@
                         <i class="fa fa-shopping-cart"></i> <span class="text-primary">Borrow</span></a>
                 </li>
                 @if(Auth::guest())
-                    <li><a href="#">Register</a></li>
+                    <li><a href="{{ url('/').'/auth/register' }}">Register</a></li>
                     <li class="{{ Request::is('auth/login') ? 'active' : '' }}">
                         <a href="{{ url('/').'/auth/login' }}">Login</a>
                     </li>
