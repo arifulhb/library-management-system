@@ -20,9 +20,10 @@
                 <div class="box">
                     <div class="box-header with-border">
                         <h3 class="box-title">Book List</h3>
-                        <p class='pull-right'><button class="btn btn-xs btn-info" data-toggle="modal"
-                                                      data-target="#addCompany">
-                                <i class="fa fa-plus"></i> Add New</button></p>
+                        <p class='pull-right'>
+                            <a href="{{ url('/').'/admin/book/add-new' }}" class="btn btn-xs btn-info">
+                                <i class="fa fa-plus"></i> Add New</a>
+                        </p>
                     </div>
                     <div class="box-body">
 
