@@ -103,6 +103,7 @@
              * Book
              */
             Route::post('/book', ['uses' => 'BookController@store', 'middleware' => 'admin']);
+            Route::post('/book/{id}/copy', ['uses' => 'BookController@postAddCopy', 'middleware' => 'admin']);
             Route::post('/book/{id}',
                 ['uses' => 'BookController@update', 'middleware' => 'admin', 'where' => ['id' => '[0-9]+',]]);
             Route::delete('/book/{id}/author/{authorId}',

@@ -21,9 +21,9 @@
     <section id="editBook" class="content book-form">
         <div class="row">
             <div class="col-lg-12 col-md-12 col-sm-12">
-                <div class="box">
+                <div class="box box-primary">
                     <div class="box-header with-border">
-                        <h3 class="box-title">Book Details</h3>
+                        <h3 class="box-title"><i class="fa fa-book"></i> Book Details</h3>
                     </div>
                     <form method="post" action="{{ url('/').'/admin/book/'. $book->id }}" enctype="multipart/form-data">
                         <input type="hidden" id="token" name="_token" value="{{ csrf_token() }}">
@@ -153,20 +153,20 @@
                                 </div>
                                 <div class="col-lg-3 col-md-6 col-sm-12">
                                     <div class="form-group">
-                                        <label for="bookISBN10">Shelf</label>
-                                        <select class="form-control input-lg" name="shelf">
+                                        <label for="shelf">Shelf</label>
+                                        <select class="form-control input-lg" name="shelf" id="shelf">
                                             @foreach($shelfs as $shelf)
-                                                <option>{{ $shelf }}</option>
+                                                <option {{ $book->shelfName==$shelf ? 'SELECTED':'' }}>{{ $shelf }}</option>
                                             @endforeach
                                         </select>
                                     </div>
                                 </div>
                                 <div class="col-lg-3 col-md-6 col-sm-12">
                                     <div class="form-group">
-                                        <label for="bookIsbn13">Shelf Level</label>
+                                        <label>Shelf Level</label>
                                         <select class="form-control input-lg" name="shelfLevel">
                                             @foreach($shelfLevels as $level)
-                                                <option>{{ $level }}</option>
+                                                <option {{ $book->shelfRackLevel == $level ? "SELECTED" : "" }}>{{ $level }}</option>
                                             @endforeach
                                         </select>
                                     </div>
@@ -237,6 +237,55 @@
                             </p>
                         </div>
                     </form>
+                </div>
+                <div class="box box-info">
+                    <div class="box-header with-border">
+                        <div class="row">
+                            <div class="col-lg-6 col-md-6 col-sm-12">
+                                <h4><i class="fa fa-copy"></i> Books Copy</h4>
+                            </div>
+                            <div class="col-lg-6 col-md-6 col-sm-12 text-right">
+                                <form action="{{ url('/').'/admin/book/'.$book->id.'/copy' }}" method="post">
+                                    <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                                    <button type="submit" class="btn btn-default btn-sm btn-flat"><i class="fa fa-plus"></i> Add New Copy</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="box-body">
+                        <table class="table">
+                            <thead>
+                            <tr>
+                                <th>Book Code</th>
+                                <th>Status</th>
+                                <th></th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            @foreach($book->copies as $copy)
+                                <tr class="{{ $copy->deleted_at != null?'warning':'' }}">
+                                    <form action="{{ url('/').'/admin/book/'.$book->id.'/copy/'.$copy->id }}"
+                                          method="POST">
+                                        <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                                        <input name="_method" type="hidden" value="DELETE">
+                                        <td>{{ $copy->bookCode }}</td>
+                                        <td>{{ $copy->status }}</td>
+                                        <td class="text-right">
+                                            @if($copy->deleted_at == null)
+                                                <button class="btn-remove-book-copy btn btn-warning btn-sm"
+                                                        type="submit">
+                                                    Delete
+                                                </button>
+                                            @else
+                                                <span class="text-muted"><i class="fa fa-trash-o"></i> trashed</span>
+                                            @endif
+                                        </td>
+                                    </form>
+                                </tr>
+                            @endforeach
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
             </div>
 

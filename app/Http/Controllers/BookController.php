@@ -108,7 +108,7 @@
                     }
                 }
 
-                for ($i = 1; $i < intval($inputs['copy']); $i++) {
+                for ($i = 0; $i < intval($inputs['copy']); $i++) {
                     $copy = new BookCopy();
                     $copy->bookCode = $copy->generateBookCode($book->shelfName, $book->shelfRackLevel);
                     $copy->status = 1;
@@ -306,6 +306,29 @@
             $result = ['result' => $books];
 
             return response()->json($result);
+        }
+
+
+        /**
+         * @param Request $request
+         * @param $id
+         *
+         * @since  vx.x.x
+         * @author Ariful Haque <arifulhb@gmail.com>
+         * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
+         */
+        public function postAddCopy(Request $request, $id){
+
+            $book = Book::find($id);
+
+            $copy = new BookCopy();
+            $copy->bookCode = $copy->generateBookCode($book->shelfName, $book->shelfRackLevel);
+            $copy->status = 1;
+            $copy->book_id = $book->id;
+            $copy->added_by = Auth::user()->id;
+            $book->copies()->save($copy);
+
+            return redirect('/admin/book/'.$book->id.'/edit');
         }
 
         /**
