@@ -79,17 +79,14 @@
 
                     </div>
                     <div class="box-footer">
-                        <p class="text-left">
-
-                        </p>
-                        <p class="text-right">
-
+                        <p class="">
                             <form action="{{ url('/').'/admin/book/'.$book->id }}" method="post">
                                 <input type="hidden" name="_token" value="{{ csrf_token() }}"/>
                                 <input name="_method" type="hidden" value="DELETE">
-                                <span class="pull-right">Delete all copy including book title.
-                                    <button class="btn btn-danger btn-sm" type="submit">Delete</button>
+                                <span class="pull-left text-danger text-right">
+                                    <strong>Delete all copy including the book book</strong>
                                 </span>
+                                <button class="pull-right btn btn-danger btn-sm" type="submit">Delete</button>
                             </form>
 
                         </p>

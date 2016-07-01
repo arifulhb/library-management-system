@@ -25,7 +25,7 @@
         public function index()
         {
             $book = Book::with('authors', 'categories', 'publisher')
-                    ->orderBy('updated_at', 'desc')
+                        ->orderBy('updated_at', 'desc')
                         ->paginate(15);
             $data['books'] = $book;
 
@@ -156,6 +156,16 @@
             return View::make('admin.books.edit', $data);
         }
 
+        public function postUpdateCopy(Request $request, $id, $copyId)
+        {
+            $inputs = $request->all();
+            $bookCopy = BookCopy::find($copyId);
+            $bookCopy->status = $inputs['status'];
+            $bookCopy->save();
+
+            return redirect('/admin/book/' . $id . '/edit');
+        }
+
         /**
          * Update the specified resource in storage.
          *
@@ -237,7 +247,8 @@
         {
             $book = Book::find($id);
             $book->delete();
-            $request->session()->flash('deleteStatus', 'Book '.$book->title . ' deleted.');
+            $request->session()->flash('deleteStatus', 'Book ' . $book->title . ' deleted.');
+
             return redirect('/admin/book/list');
         }
 
@@ -258,16 +269,19 @@
                 ->json(['result' => $result], 204);
         }
 
-        public function getDelete(Request $request, $id){
+        public function getDelete(Request $request, $id)
+        {
 
             $inputs = $request->all();
 
-            if(isset($inputs['trashed'])){
-                $book = Book::with(array('copies' => function($query) {
-                    $query->withTrashed();
-                }))
-                    ->find($id);
-            }else{
+            if (isset($inputs['trashed'])) {
+                $book = Book::with(array(
+                    'copies' => function ($query) {
+                        $query->withTrashed();
+                    },
+                ))
+                            ->find($id);
+            } else {
                 $book = Book::with('authors', 'copies')->find($id);
             }
 
@@ -277,12 +291,13 @@
 
         }
 
-        public function deleteCopy($id, $copyId){
+        public function deleteCopy($id, $copyId)
+        {
 
             $copy = BookCopy::find($copyId);
             $copy->delete();
 
-            return redirect('/admin/book/'.$id.'/delete');
+            return redirect('/admin/book/' . $id . '/delete');
         }
 
         public function search(Request $request)
@@ -317,7 +332,8 @@
          * @author Ariful Haque <arifulhb@gmail.com>
          * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
          */
-        public function postAddCopy(Request $request, $id){
+        public function postAddCopy(Request $request, $id)
+        {
 
             $book = Book::find($id);
 
@@ -328,7 +344,7 @@
             $copy->added_by = Auth::user()->id;
             $book->copies()->save($copy);
 
-            return redirect('/admin/book/'.$book->id.'/edit');
+            return redirect('/admin/book/' . $book->id . '/edit');
         }
 
         /**

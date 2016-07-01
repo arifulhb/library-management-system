@@ -232,8 +232,11 @@
                         </div>
 
                         <div class="box-footer">
-                            <p class="text-right">
-                                <button class="btn btn-primary btn-flat" type="submit">Save</button>
+                            <p class="">
+                                <a class="pull-left text-warning" href="{{ url('/').'/admin/book/'.$book->id.'/delete' }}"
+                                   title="Delete Book" data-toggle="tooltip">
+                                    <i class="fa fa-trash"></i> Delete Book</a>
+                                <button class="pull-right btn btn-primary btn-flat" type="submit">Save</button>
                             </p>
                         </div>
                     </form>
@@ -267,15 +270,18 @@
                                     <form action="{{ url('/').'/admin/book/'.$book->id.'/copy/'.$copy->id }}"
                                           method="POST">
                                         <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                                        <input name="_method" type="hidden" value="DELETE">
                                         <td>{{ $copy->bookCode }}</td>
-                                        <td>{{ $copy->status }}</td>
+                                        <td>
+                                            <select class="form-control" name="status">
+                                                @foreach(config('lms.bookCopyStatus') as $key=>$status)
+                                                    <option {{ $copy->status == $key ? 'SELECTED':'' }} value="{{ $key }}"
+                                                            >{{ $status }}</option>
+                                                @endforeach
+                                            </select>
+                                        </td>
                                         <td class="text-right">
                                             @if($copy->deleted_at == null)
-                                                <button class="btn-remove-book-copy btn btn-warning btn-sm"
-                                                        type="submit">
-                                                    Delete
-                                                </button>
+                                                <button class="btn btn-sm btn-flat" type="submit">Update</button>
                                             @else
                                                 <span class="text-muted"><i class="fa fa-trash-o"></i> trashed</span>
                                             @endif

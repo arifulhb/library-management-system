@@ -114,6 +114,8 @@
             Route::get('/book/add-new', ['uses' => 'BookController@create', 'middleware' => 'admin']);
             Route::get('/book/{id}/edit', ['uses' => 'BookController@edit', 'where' => ['id' => '[0-9]+',]]);
             Route::get('/book/{id}/delete', ['uses' => 'BookController@getDelete', 'where' => ['id' => '[0-9]+',]]);
+            Route::post('/book/{id}/copy/{copyId}',
+                ['uses' => 'BookController@postUpdateCopy', 'where' => ['id' => '[0-9]+',]]);
             Route::delete('/book/{id}/copy/{copyId}',
                 ['uses' => 'BookController@deleteCopy', 'where' => ['id' => '[0-9]+',]]);
             Route::delete('/book/{id}', ['uses' => 'BookController@destroy', 'where' => ['id' => '[0-9]+',]]);

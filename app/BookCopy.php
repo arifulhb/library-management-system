@@ -43,13 +43,13 @@ class BookCopy extends Model
 
     }
 
-    public function getStatusAttribute($value){
+/*    public function getStatusAttribute($value){
         if($value == 1 ){
             return 'Available';
         } elseif ($value == 0){
             return 'Borrowed';
         }
-    }
+    }*/
 
     /*
      * Generate code of individual books

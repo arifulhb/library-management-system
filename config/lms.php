@@ -8,6 +8,7 @@
         
         'juniorMemberBorrowLimit' => 3,
 
+        'bookCopyStatus' => [0 => 'On Loan', 1 => 'Available', 2 => 'Lost', 3 => 'Damaged', 4 => 'Withdrawn'],
 
         'shelfNames' => ['Shelf 1', 'Shelf 2', 'Shelf 3', 'Shelf 4', 'Shelf 5', 'Shelf 6', 'Shelf 7', 'Shelf 8'],
         
