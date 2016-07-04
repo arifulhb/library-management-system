@@ -90,6 +90,8 @@
             /**
              * Member
              */
+            Route::get('/member/{id}',
+                ['uses' => 'MemberController@show', 'middleware' => 'admin', 'where' => ['id' => '[0-9]+',]]);
             Route::get('/member/add-new', ['uses' => 'MemberController@create', 'middleware' => 'admin']);
             Route::post('/member', ['uses' => 'MemberController@store', 'middleware' => 'admin']);
             Route::get('/member/{id}/edit',

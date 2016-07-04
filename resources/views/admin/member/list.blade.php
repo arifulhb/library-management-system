@@ -41,7 +41,7 @@
                                 @foreach($members as $member)
                                     <tr>
                                         <td>
-                                            <a href="{{ url('/member').'/'.$member->id }}" title="{{ $member->getFullName() }}">
+                                            <a href="{{ url('/admin/member').'/'.$member->id }}" title="{{ $member->getFullName() }}">
                                                 {{  $member->getFullName()  }}</a>
                                         </td>
                                         <td>

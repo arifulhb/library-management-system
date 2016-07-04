@@ -89,7 +89,11 @@ class MemberController extends Controller
      */
     public function show($id)
     {
-        //
+        $member = User::find($id);
+        $data['member'] = $member;
+
+        return View::make('admin.member.show', $data);
+
     }
 
     /**
