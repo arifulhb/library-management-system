@@ -42,7 +42,10 @@
                                     <tr>
                                         <td>
                                             <a href="{{ url('/admin/member').'/'.$member->id }}" title="{{ $member->getFullName() }}">
-                                                {{  $member->getFullName()  }}</a>
+                                                {{ $member->getFullName() }}
+                                                <small class="text-muted" data-toggle="tooltip" title="Reservations"
+                                                >({{ $member->reservations()->count() }})</small>
+                                            </a>
                                         </td>
                                         <td>
                                             {{ $member->gender }}
