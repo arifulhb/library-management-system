@@ -38,10 +38,7 @@
                                 <tbody>
                                 @foreach($authors as $author)
                                     <tr>
-                                        <td>
-                                            <a href="{{ url('/author/').'/'.$author->id . '/' . str_slug($author->name,'-') }}" title="{{ $author->name }}">
-                                                {{  $author->name }}</a>
-                                        </td>
+                                        <td>{{  $author->name }}</td>
                                         <td>
                                             {{ $author->gender }}
                                         </td>

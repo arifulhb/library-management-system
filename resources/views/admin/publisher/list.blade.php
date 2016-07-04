@@ -34,10 +34,7 @@
                                 <tbody>
                                 @foreach($publishers as $publisher)
                                     <tr>
-                                        <td>
-                                            <a href="{{ url('/publisher/').'/'.$publisher->id . '/' . str_slug($publisher->name,'-') }}" title="{{ $publisher->name }}">
-                                                {{  $publisher->name }}</a>
-                                        </td>
+                                        <td>{{  $publisher->name }}</td>
                                         <td>
                                             {{ $publisher->country }}
                                         </td>
